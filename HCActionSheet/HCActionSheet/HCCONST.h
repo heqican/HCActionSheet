@@ -22,7 +22,8 @@ static NSString *const kSelectionViewShouldDismissKey = @"SelectionViewShouldDis
 
 #define kSelectionHeadHeight 30
 
-#define kTitleTextColor [UIColor blackColor]
+#define kTitleTextColor [UIColor blackColor] //标题颜色
+#define kCancelTextColor [UIColor colorWithRed:104/255.0 green:165/255.0 blue:225/255.0 alpha:1.0]
 
 
 #endif /* HCCONST_h */

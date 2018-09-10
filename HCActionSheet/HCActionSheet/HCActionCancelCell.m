@@ -7,6 +7,7 @@
 //
 
 #import "HCActionCancelCell.h"
+#import "HCCONST.h"
 
 @implementation HCActionCancelCell
 
@@ -18,7 +19,7 @@
         self.labelView=labelView;
         labelView.textAlignment=NSTextAlignmentCenter;
         labelView.font=[UIFont systemFontOfSize:16];
-        [labelView setTextColor:[UIColor colorWithRed:104/255.0 green:165/255.0 blue:225/255.0 alpha:1.0]];
+        [labelView setTextColor:kCancelTextColor];
     }
     return self;
 }

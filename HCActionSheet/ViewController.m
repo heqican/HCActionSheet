@@ -36,8 +36,8 @@
  */
 -(void)showAction:(id)sender{
     [HCActionSheet showActionSheetWithTitle:@"选择支付方式" itemBlock:^(id<HCActionSheetProtocol> items) {
-        [items addItemWithLabelText:@"标题一" imageName:@"image_conf" shouldDismiss:YES];
-        [items addItemWithLabelText:@"标题二" imageName:@"image_finish" shouldDismiss:YES];
+        [items addItemWithLabelText:@"微信支付" imageName:@"image_wechat" shouldDismiss:YES];
+        [items addItemWithLabelText:@"支付宝支付" imageName:@"image_alipay" shouldDismiss:YES];
     } selectedBlock:^(NSInteger selectItem) {
         NSLog(@"点击了：%ld",selectItem);
     }];
