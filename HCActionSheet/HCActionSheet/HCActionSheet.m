@@ -14,12 +14,14 @@
 
 
 @interface HCActionSheet () <UITableViewDelegate,UITableViewDataSource>
+@property (strong,nonatomic) NSString *titleText;
 @property (strong,nonatomic) UITableView *tableView;
 @property (strong,nonatomic) HCActionSheetItems *items;
 @property (copy,nonatomic) void (^selectedBlock)(NSInteger selectedItem);
 @end
 
 @implementation HCActionSheet
+
 
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -39,16 +41,17 @@
     return self;
 }
 
-+(void)showActionSheetWithItemBlock:(HCItemsBlock)itemsBlock selectedBlock:(HCSelectedBlock)selectedBlock{
++(void)showActionSheetWithTitle:(NSString *)titleText itemBlock:(HCItemsBlock)itemsBlock selectedBlock:(HCSelectedBlock)selectedBlock{
     HCActionSheet *actionSheet = [[HCActionSheet alloc] initWithFrame:CGRectZero];
-    [actionSheet showActionSheetWithItemBlock:itemsBlock selectedBlock:selectedBlock];
+    [actionSheet showActionSheetWithTitle:titleText itemBlock:itemsBlock selectedBlock:selectedBlock];
 }
 
--(void)showActionSheetWithItemBlock:(HCItemsBlock)itemsBlock selectedBlock:(HCSelectedBlock)selectedBlock{
+-(void)showActionSheetWithTitle:(NSString *)titleText itemBlock:(HCItemsBlock)itemsBlock selectedBlock:(HCSelectedBlock)selectedBlock{
+    self.titleText = titleText;
     self.selectedBlock = selectedBlock;
     itemsBlock(self.items);
     
-    CGFloat tableHeight = (self.items.count + 1) * kSelectionCellHeight;
+    CGFloat tableHeight = (self.items.count + 1) * kSelectionCellHeight + ([self isShowTitleInSection:0]?kSelectionHeadHeight:0);
     if (tableHeight <= KSelectionViewMaxHeight) {
         self.tableView.scrollEnabled = NO;
     }else{
@@ -105,6 +108,40 @@
     }
     
     return 0;
+}
+
+
+/**
+ 是否显示标题栏
+
+ @param section section
+ @return bool
+ */
+-(BOOL)isShowTitleInSection:(NSInteger)section{
+    return (section == 0 && self.titleText && self.titleText.length > 0);
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if ([self isShowTitleInSection:section]) {
+        return kSelectionHeadHeight;
+    }
+    return 0;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if ([self isShowTitleInSection:section]) {
+        UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kSelectionHeadHeight)];
+        titleView.backgroundColor = [UIColor clearColor];
+        UILabel *label = [[UILabel alloc] initWithFrame:titleView.frame];
+        label.font = [UIFont systemFontOfSize:15];
+        label.textColor = kTitleTextColor;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.text = self.titleText;
+        [titleView addSubview:label];
+        return titleView;
+    }
+    return nil;
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

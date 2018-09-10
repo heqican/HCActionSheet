@@ -35,7 +35,7 @@
  @param sender <#sender description#>
  */
 -(void)showAction:(id)sender{
-    [HCActionSheet showActionSheetWithItemBlock:^(id<HCActionSheetProtocol> items) {
+    [HCActionSheet showActionSheetWithTitle:@"选择支付方式" itemBlock:^(id<HCActionSheetProtocol> items) {
         [items addItemWithLabelText:@"标题一" imageName:@"image_conf" shouldDismiss:YES];
         [items addItemWithLabelText:@"标题二" imageName:@"image_finish" shouldDismiss:YES];
     } selectedBlock:^(NSInteger selectItem) {

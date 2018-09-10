@@ -15,12 +15,15 @@ typedef void(^HCSelectedBlock)(NSInteger selectItem);
 
 @interface HCActionSheet : UIView
 
+
 /**
  显示ActionSheet
- 
- @param itemsBlock 添加子项回调
- @param selectedBlock 选中项回调
+
+ @param titleText 显示标题（传入为nil或者@""时，不显示标题栏）
+ @param itemsBlock 添加选择项
+ @param selectedBlock 点击选择项回调
  */
-+(void)showActionSheetWithItemBlock:(HCItemsBlock)itemsBlock selectedBlock:(HCSelectedBlock)selectedBlock;
++(void)showActionSheetWithTitle:(NSString *)titleText itemBlock:(HCItemsBlock)itemsBlock selectedBlock:(HCSelectedBlock)selectedBlock;
+
 
 @end

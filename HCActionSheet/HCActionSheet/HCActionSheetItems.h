@@ -17,7 +17,7 @@
  
  @param labelText 标题文字
  @param imageName 图标
- @param shouldDidmiss 选中时候是否隐藏ActionSheet
+ @param shouldDismiss 选中时候是否隐藏ActionSheet
  */
 -(void)addItemWithLabelText:(NSString *)labelText imageName:(NSString *)imageName shouldDismiss:(BOOL)shouldDismiss;
 

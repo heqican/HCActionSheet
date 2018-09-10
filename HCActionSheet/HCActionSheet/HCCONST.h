@@ -20,5 +20,9 @@ static NSString *const kSelectionViewShouldDismissKey = @"SelectionViewShouldDis
 #define kSelectionCellHeight 58
 #define KSelectionViewMaxHeight 320
 
+#define kSelectionHeadHeight 30
+
+#define kTitleTextColor [UIColor blackColor]
+
 
 #endif /* HCCONST_h */
