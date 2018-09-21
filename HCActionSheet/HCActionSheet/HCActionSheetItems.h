@@ -13,13 +13,14 @@
 @required
 
 /**
- 添加选择项
- 
+ 添加选项
+
  @param labelText 标题文字
- @param imageName 图标
- @param shouldDismiss 选中时候是否隐藏ActionSheet
+ @param subTitle 副标题文字（可选）
+ @param imageName 图标（可选） 图片为空时，文字居中
+ @param shouldDismiss 选中后时候隐藏控件
  */
--(void)addItemWithLabelText:(NSString *)labelText imageName:(NSString *)imageName shouldDismiss:(BOOL)shouldDismiss;
+-(void)addItemWithTitle:(NSString *)labelText subTitle:(NSString *)subTitle imageName:(NSString *)imageName shouldDismiss:(BOOL)shouldDismiss;
 
 @end
 

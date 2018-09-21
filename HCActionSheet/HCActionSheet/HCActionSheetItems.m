@@ -19,9 +19,9 @@
     return self;
 }
 
--(void)addItemWithLabelText:(NSString *)labelText imageName:(NSString *)imageName shouldDismiss:(BOOL)shouldDismiss{
+-(void)addItemWithTitle:(NSString *)labelText subTitle:(NSString *)subTitle imageName:(NSString *)imageName shouldDismiss:(BOOL)shouldDismiss{
     if (labelText && [labelText isKindOfClass:[NSString class]] && imageName && [imageName isKindOfClass:[NSString class]]) {
-        NSDictionary *itemDic = [NSDictionary dictionaryWithObjectsAndKeys: labelText, kSelectionCellNameKey, imageName, kSelectionCellImageNameKey, [NSNumber numberWithBool:shouldDismiss], kSelectionViewShouldDismissKey, nil];
+        NSDictionary *itemDic = [NSDictionary dictionaryWithObjectsAndKeys: labelText, kSelectionCellNameKey, subTitle,SelectionSubTitleCellNameKey, imageName, kSelectionCellImageNameKey, [NSNumber numberWithBool:shouldDismiss], kSelectionViewShouldDismissKey, nil];
         [self.itemsArray addObject:itemDic];
     }
 }

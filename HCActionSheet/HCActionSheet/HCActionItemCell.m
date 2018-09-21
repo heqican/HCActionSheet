@@ -27,6 +27,14 @@
         self.labelView=labelView;
         [self.contentView addSubview:labelView];
         
+        //子标题
+        UILabel *subLabel = [[UILabel alloc] init];
+        subLabel.backgroundColor = [UIColor clearColor];
+        subLabel.font = [UIFont systemFontOfSize:12];
+        [subLabel setTextColor:[UIColor colorWithRed:230/255.0 green:230/255.0 blue:250/255.0 alpha:1.0]];
+        self.subTitle = subLabel;
+        [self.contentView addSubview:subLabel];
+        
         //下划线
         UIView *lineView=[[UIView alloc]init];
         self.lineView=lineView;
@@ -57,6 +65,19 @@
     CGFloat labelW=self.bounds.size.width-labelX;
     CGFloat labelH=self.bounds.size.height;
     self.labelView.frame=CGRectMake(labelX, labelY, labelW, labelH);
+    self.labelView.textAlignment = NSTextAlignmentLeft;
+    if (!self.hasImage) {
+        self.labelView.frame=CGRectMake([UIScreen mainScreen].bounds.size.width/2 - labelW/2, labelY, labelW, labelH);
+        self.labelView.textAlignment = NSTextAlignmentCenter;
+    }
+    
+    if (self.hadSubTitle) {
+        self.subTitle.frame = CGRectMake(0, 0, self.labelView.frame.size.width, self.labelView.frame.size.height);
+        self.labelView.center = CGPointMake(self.labelView.center.x, self.labelView.center.y - 10);
+        self.subTitle.center = CGPointMake(self.labelView.center.x, self.labelView.center.y + 20);
+        self.subTitle.textAlignment = self.labelView.textAlignment;
+    }
+    
     
     
     CGFloat lineX=0;
@@ -70,9 +91,18 @@
 -(void)setInfoDictionary:(NSDictionary *)infoDictionary{
     _infoDictionary = infoDictionary;
     NSString *imageName = infoDictionary[kSelectionCellImageNameKey];
+    self.hasImage = NO;
+    self.hadSubTitle = NO;
     if (imageName && [imageName isKindOfClass:[NSString class]] && imageName.length) {
         self.pictureView.image=[UIImage imageNamed:imageName];
+        self.hasImage = YES;
     }
+    
+    NSString *subString = infoDictionary[SelectionSubTitleCellNameKey];
+    if (subString && subString.length >0) {
+        self.hadSubTitle = YES;
+    }
+    self.subTitle.text = [subString description];
     
     NSString *nameStr = infoDictionary[kSelectionCellNameKey];
     self.labelView.text = [nameStr description];

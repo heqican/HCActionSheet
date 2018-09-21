@@ -11,6 +11,7 @@
 
 
 static NSString *const kSelectionCellNameKey = @"SelectionCellNameKey";
+static NSString *const SelectionSubTitleCellNameKey = @"SelectionSubTitleCellNameKey";
 static NSString *const kSelectionCellImageNameKey = @"SelectionCellImageNameKey";
 static NSString *const kSelectionCellTagKey = @"SelectionCellTagKey";
 static NSString *const kSelectionViewShouldDismissKey = @"SelectionViewShouldDismissKey";
